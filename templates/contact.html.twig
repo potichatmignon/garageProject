@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        <div class="app">
+            <nav class="container">
+                <div class="logo">
+                    <a style="display:flex; flex-direction:row; gap: 24px;"  href="{{ path('app_home') }}"><h3>Garage V. Parrot</h3></a>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="{{ path('app_about') }}">About</a></li>
+                        <li><a class="active" href="{{ path('app_contact') }}">Contact</a></li>
+                        <li><a id="connexion" href="{{ path('app_connexion')}}">Connexion</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>   
+        {% endblock %}
+    </body>
+    <script>
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = this.href;
+        });
+    });
+    </script>
+</html>
