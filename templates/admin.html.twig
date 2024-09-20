@@ -12,7 +12,7 @@
     </head>
     <body>
         {% block body %}
-        <div class="app">
+        <div class="app" style="display:flex; justify-content:center;">
             <nav class="container">
                 <div class="logo">
                     <a style="display:flex; flex-direction:row; gap: 24px;"  href="{{ path('app_home') }}"><h3>Garage V. Parrot</h3></a>
@@ -25,8 +25,9 @@
                     </ul>
                 </div>
             </nav>
-            <div class="page" style="width: 90vw;">
+            <div class="title" style="width: 90vw;">
                 <h1>Admin :</h1>
+                <h1></h1>
             </div>
         </div>   
         {% endblock %}
