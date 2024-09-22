@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CarController extends AbstractController
 {
-    #[Route('/cars', name: 'app_car')]
+    #[Route('/info', name: 'app_info')]
     public function index(CarRepository $carRepository): Response
     {
         $cars = $carRepository->findAll();
@@ -19,12 +19,5 @@ class CarController extends AbstractController
             'cars' => $cars,
         ]);
     }
-
-    #[Route('/car/{id}', name: 'app_car')]
-    public function show(Car $car): Response
-    {
-        return $this->render('info.html.twig', [
-            'car' => $car,
-        ]);
-    }
+    
 }

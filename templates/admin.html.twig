@@ -26,14 +26,18 @@
 						<ul>
 							<li><a href="{{ path('app_about') }}">About</a></li>
 							<li><a href="{{ path('app_contact') }}">Contact</a></li>
-							<li><a id="connexion"href="{{ path('app_connexion')}}">Connexion</a></li>
+							<li><a id="connexion" href="{{ path('app_connexion') }}">{{ user_role }}</a></li>
 						</ul>
 					</div>
 				</nav>
 				<div class="title" style="width: 90vw;">
 					<h1>Admin :</h1>
 					<h1></h1>
+					<div>
+						<a href="{{ path('app_deconnexion')}}">Déconnexion</a>
+					</div>
 				</div>
+				
 			</div>
 		{% endblock %}
 	</body>
