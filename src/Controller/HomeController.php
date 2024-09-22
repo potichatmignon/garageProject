@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Repository\UserRepository;
+use App\Repository\CarRepository;
 
 class HomeController extends AbstractController
 {
@@ -72,7 +73,17 @@ class HomeController extends AbstractController
         
     }
 
-
+    #[Route('/info', name: 'app_info')]
+    public function car(CarRepository $carRepository): Response
+    {
+        $session = $this->requestStack->getSession();
+        $userRole = $session->get('user_role', 'Connexion');
+        $cars = $carRepository->findAll();
+        return $this->render('info.html.twig', [
+            'cars' => $cars,
+            'user_role' => $userRole
+        ]);
+    }
     
     #[Route('/login', name: 'app_login', methods: ['GET'])]
     public function login(Request $request, UserRepository $userRepository): Response
