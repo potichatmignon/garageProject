@@ -1,39 +1,79 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Garage V. Parrot
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> {% block stylesheets %}{% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}
-        <div class="app">
-            <nav class="container">
-                <div class="logo">
-                    <a style="display:flex; flex-direction:row; gap: 24px;"  href="{{ path('app_home') }}"><h3>Garage V. Parrot</h3></a>
-                </div>
-                <div class="menu">
-                    <ul>
-                        <li><a class="active" href="{{ path('app_about') }}">About</a></li>
-                        <li><a href="{{ path('app_contact') }}">Contact</a></li>
-                        <li><a id="connexion" href="{{ path('app_connexion')}}">Connexion</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>   
-        {% endblock %}
-    </body>
-    <script>
-    document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = this.href;
-        });
-    });
-    </script>
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}
+			<div class="app">
+				<nav class="container">
+					<div class="logo">
+						<a style="display:flex; flex-direction:row; gap: 24px;" href="{{ path('app_home') }}">
+							<h3>Garage V. Parrot</h3>
+						</a>
+					</div>
+					<div class="menu">
+						<ul>
+							<li><a class="active" href="{{ path('app_about') }}">About</a></li>
+							<li><a href="{{path('app_contact')}}">Contact</a></li>
+							<li><a id="connexion"href="{{ path('app_connexion')}}">Connexion</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="apropos">
+				<h1>Bienvenue chez Garage V. Parrot</h1>
+
+				<section id="about">
+					<p>Votre atelier de confiance à Toulouse pour la réparation et l'entretien de vos véhicules. Fort de
+						<strong>15 années d'expérience</strong>	dans le domaine de la réparation automobile, <strong>Vincent Parrot</strong>
+						a ouvert les portes de son propre garage en	<strong>2021</strong>. Depuis, il s'engage à offrir à ses clients un service de qualité, alliant savoir-faire et expertise.</p>
+				</section>
+
+				<section id="services">
+					<h2>Nos services :</h2>
+					<ul>
+						<li>
+							<strong>Réparation de la carrosserie</strong> et de la mécanique</li>
+						<li>
+							<strong>Entretien régulier</strong> pour assurer la performance et la sécurité de votre voiture</li>
+						<li>
+							<strong>Vente de véhicules d'occasion</strong>, soigneusement sélectionnés</li>
+					</ul>
+				</section>
+
+				
+				<h2>Pourquoi choisir Garage V. Parrot ?</h2>
+
+                <section id="philosophy">
+					<p>Au <strong>Garage V. Parrot</strong>, chaque véhicule est traité avec le plus grand soin. Vincent et son équipe considèrent l'atelier comme un lieu de confiance, où votre voiture est entre de bonnes mains.</p>
+
+                    <p>Faites-nous confiance pour prendre soin de votre véhicule, qu'il s'agisse d'une réparation, d'un entretien ou d'une nouvelle acquisition. <strong>Nous sommes à votre écoute</strong> pour vous offrir des services adaptés à vos besoins.</p>
+				</section>
+
+				<section id="sentence">
+					<h2>Votre satisfaction et la sécurité de votre véhicule sont nos priorités !</h2>
+				</section>
+			</div>
+
+		{% endblock %}
+	</body>
+	<script>
+		document.querySelectorAll('nav a').forEach(link => {
+link.addEventListener('click', function (event) {
+event.preventDefault();
+window.location.href = this.href;
+});
+});
+	</script>
 </html>
