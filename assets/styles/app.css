@@ -129,6 +129,47 @@ img:hover {
     background-color: #f4f4f5;
 }
 
+.presentation{
+    columns:300px; 
+    width: 63vw;
+}
+
+.apropos{
+    margin:2% 20%;
+}
+
+#about{
+    margin-top: 1%;
+}
+
+#services{
+    margin-top: 2%;
+}
+
+#services ul{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2%;
+}
+
+#services ul :first-child{
+    margin-top: 1%;
+}
+
+#philosophy{
+    margin-top: 1%;
+}
+
+#philosophy :last-child{
+    margin-top: 1%;
+}
+
+
+#sentence{
+    margin-top: 3%;
+    text-align: center;
+}
+
 #connexion {
     display: inline-block;
     padding: 12px 24px;
