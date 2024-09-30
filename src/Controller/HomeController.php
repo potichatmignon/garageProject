@@ -138,7 +138,9 @@ class HomeController extends AbstractController
             ]);
         }   
 
-        
+        else{
+            return $this->redirectToRoute('app_admin');
+        }
 
         return $this->render('admin.html.twig');
     }
