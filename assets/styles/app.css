@@ -28,7 +28,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: rgba(244, 244, 245, 0.8);
+    background-color: rgba(244, 244, 245, 0.65);
     color: #09090b;
     backdrop-filter: blur(20px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -101,6 +101,7 @@ img:hover {
     max-width: 400px;
     width: 100%;
     text-align: center;
+    margin: 0 auto;
 }
 
 .login-container h2 {
@@ -119,7 +120,8 @@ img:hover {
     color: #18181b;
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #a1a1aa;
@@ -127,6 +129,10 @@ img:hover {
     font-size: 1rem;
     color: #18181b;
     background-color: #f4f4f5;
+}
+
+.form-group textarea {
+    resize: vertical;
 }
 
 .presentation{
