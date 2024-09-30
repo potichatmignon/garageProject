@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -51,26 +52,23 @@ class HomeController extends AbstractController
     #[Route('/connexion', name: 'app_connexion')]
     public function connexion(): Response
     {
-
         $session = $this->requestStack->getSession();
         $userRole = $session->get('user_role', 'Connexion');
         if ($userRole === 'Admin') {
             return $this->redirectToRoute('app_admin');
+        } else {
+            return $this->render('connexion.html.twig', [
+                'user_role' => $userRole
+            ]);
         }
-        else {return $this->render('connexion.html.twig', [
-            'user_role' => $userRole
-        ]);}
-        
     }
 
     #[Route('/deconnexion', name: 'app_deconnexion')]
     public function deconnexion(): Response
     {
-
         $session = $this->requestStack->getSession();
         $session->remove('user_role');
         return $this->redirectToRoute('app_home');
-        
     }
 
     #[Route('/info', name: 'app_info')]
@@ -84,11 +82,10 @@ class HomeController extends AbstractController
             'user_role' => $userRole
         ]);
     }
-    
+
     #[Route('/login', name: 'app_login', methods: ['GET'])]
     public function login(Request $request, UserRepository $userRepository): Response
     {
-
         $username = $request->query->get('username');
         $password = $request->query->get('password');
 
@@ -105,8 +102,7 @@ class HomeController extends AbstractController
             if ($user->getRole() === 'admin') {
                 $session->set('user_role', 'Admin');
                 return $this->redirectToRoute('app_admin');
-            }
-            else {
+            } else {
                 $session->set('user_role', 'Employé');
                 return $this->redirectToRoute('app_home');
             }
@@ -118,12 +114,32 @@ class HomeController extends AbstractController
     }
 
     #[Route('/admin', name: 'app_admin')]
-    public function admin(): Response
+    public function admin(UserRepository $userRepository): Response
     {
         $session = $this->requestStack->getSession();
         $userRole = $session->get('user_role', 'Connexion');
+        $users = $userRepository->findAll();
         return $this->render('admin.html.twig', [
-            'user_role' => $userRole
+            'user_role' => $userRole,
+            'users' => $users
         ]);
+    }
+
+    #[Route('/add', name: 'app_addUsers', methods: ['GET'])]
+    public function addUsers(Request $request): Response
+    {
+        $username = $request->query->get('email');
+        $password = $request->query->get('password');
+        $role = $request->query->get('role');
+
+        if (!$username || !$password || !$role) {
+            return $this->render('admin.html.twig', [
+                'error' => 'Les champs ne peuvent pas être vides'
+            ]);
+        }   
+
+        
+
+        return $this->render('admin.html.twig');
     }
 }

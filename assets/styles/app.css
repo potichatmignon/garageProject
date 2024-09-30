@@ -175,8 +175,8 @@ img:hover {
     padding: 12px 24px;
     font-size: 1rem;
     font-weight: 600;
-    color: #f4f4f5; /* Text color */
-    background-color: #3f3f46; /* Background color */
+    color: #f4f4f5; 
+    background-color: #3f3f46; 
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -184,19 +184,126 @@ img:hover {
 }
 
 #connexion:hover {
-    background-color: #4b5563; /* Hover background color */
+    background-color: #4b5563; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
 }
 
-#connexion:focus {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(75, 85, 99, 0.5); /* Focus ring */
+#connexion:active {
+    background-color: #2d3748; 
+    transform: translateY(0);
 }
 
-#connexion:active {
-    background-color: #2d3748; /* Active background color */
+
+.admin-users {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+.admin-users h2 {
+    color: #3f3f46; 
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.user-list li {
+    background-color: #ffffff; 
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-user-btn {
+    width: 100px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff; 
+    background-color: #3b82f6; 
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.add-user-btn:hover {
+    background-color: #2563eb; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.add-user-btn:active {
+    background-color: #1d4ed8; 
     transform: translateY(0);
+}
+
+.add-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.add-user-form input {
+    padding: 10px;
+    border: 1px solid #a1a1aa;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #18181b;
+    background-color: #f4f4f5;
+}
+
+.add-user-form button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff; 
+    background-color: #10b981;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.add-user-form button:hover {
+    background-color: #059669; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.add-user-form button:active {
+    background-color: #047857; 
+    transform: translateY(0);
+}
+
+.logout-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff; 
+    background-color: #ef4444; 
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.logout-link:hover {
+    background-color: #dc2626; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.logout-link:active {
+    background-color: #b91c1c; 
+    transform: translateY(0);
+}
+
+.btn {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 @font-face {
