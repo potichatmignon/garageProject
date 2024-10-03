@@ -25,14 +25,53 @@ Relancez les services de WAMPP.
 
 ```bash
 
-symfony new mon_projet --version=5.4 --webapp
+scoop install symfony-cli
 
-cd mon_projet
+```
+
+Il faut télécharger lʼexécutable de Symfony CLI. Lʼexécutable est téléchargeable directement sur le
+site de Symfony
+Dans la section Binaries, cliquez sur la version correspondant à votre système : 386 pour les ordinateurs Intel
+32 bits et amd64 pour les ordinateurs avec un processeur AMD 64 bits.
+
+Allez dans C:\Program Files et créez un dossier Symfony
+
+Déplacez l'archive téléchargée et décompréssée la.
+
+Dans la barre de recherche de Windows, tapez « env ». Le premier résultat devrait être « Modifier les variables dʼenvironnement système ». 
+Cliquez dessus, la fenêtre des Propriétés système va sʼafficher.
+Cliquez alors sur le bouton « Variables dʼenvironnement ». Cela ouvrira la fenêtre des variables dʼenvironnement.
+Dans la section « Variables système », choisissez « Path » et cliquez sur le bouton « Modifier ». Cela va ouvrir une troisième fenêtre pour modifier cette variable.
+Cliquez sur le bouton « Nouveau » et saisissez le chemin du dossier contenant lʼexécutable de Symfony CLI
+(symfony.exe) décompressé à lʼétape 4. Dans notre cas ce sera : « C:\Program Files\Symfony ».
+
+ Cliquez sur les boutons « OK » des trois fenêtres afin de toutes les fermer
+
+```bash
+
+cd C:\'Program Files'\Symfony
 
 git clone https://github.com/potichatmignon/garageProject.git
 
 symfony server:start -d
 
-Visiter l'url donnée en sortie de console
+
+```
+
+Visiter l'url donnée en sortie de console afin que le site web s'affiche correctment
+
+
+## Ajouter des éléments dans la base de donnée
+
+php bin/console doctrine:database:create
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+php bin/console app:create-user vparrot@gmail.com admin admin
+php bin/console app:create-user arthur.garnier1090@gmail.com employe1 employe
+
+php bin/console app:create-car 'Audi R8' 87000 "L'Audi R8 est une voiture de sport du constructeur automobile allemand Audi. C'est le premier coupé GT deux-places de la marque qui rivalise ainsi avec les marques historiques de ce segment : Porsche, Ferrari, Chevrolet ou Aston Martin." 15241
+
+name price description km
+INSERT INTO car (description,kilometrage,name,price) VALUES ('L Audi R8 est une voiture de sport du constructeur automobile allemand Audi. C est le premier coupé GT deux-places de la marque qui rivalise ainsi avec les marques historiques de ce segment : Porsche, Ferrari, Chevrolet ou Aston Martin.',0,'Audi R8',200000);
 
   
