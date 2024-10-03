@@ -73,15 +73,58 @@ php bin/console app:create-user vparrot@gmail.com admin admin
 
 php bin/console app:create-user arthur.garnier1090@gmail.com employe1 employe
 
+php bin/console app:create-user sachasimon92350@gmail.com employe2 employe
+
+php bin/console app:create-user sharkpi.zhou@gmail.com employe3 employe
+
+php bin/console app:create-user dorian93.roux@gmail.com employe4 employe
+
+
 php bin/console app:create-car 'Audi R8' 87000 "L'Audi R8 est une voiture de sport du constructeur automobile allemand Audi. C'est le premier coupé GT deux-places de la marque qui rivalise ainsi avec les marques historiques de ce segment : Porsche, Ferrari, Chevrolet ou Aston Martin." 15241
 
+php bin/console app:create-car 'Ferrari 488' 250000 "La Ferrari 488 est une supercar italienne, connue pour son design élégant et sa performance exceptionnelle. Avec son moteur V8 biturbo, elle offre une expérience de conduite inégalée." 12345
+
+php bin/console app:create-car 'Porsche 911' 100000 "La Porsche 911 est une icône de l'automobile, alliant performance et luxe. Son design intemporel et sa technologie avancée en font un choix privilégié parmi les amateurs de voitures de sport." 67890
+
+php bin/console app:create-car 'Chevrolet Corvette' 60000 "La Chevrolet Corvette est un symbole de l'automobile américaine, offrant un excellent rapport qualité-prix avec des performances dignes des meilleures supercars." 54321
+
+php bin/console app:create-car 'Aston Martin Vantage' 150000 "L'Aston Martin Vantage est une voiture de sport britannique alliant élégance et puissance. Son moteur V8 et son design séduisant attirent les passionnés de conduite." 98765
+
+php bin/console app:create-car 'McLaren 720S' 300000 "La McLaren 720S est une supercar révolutionnaire qui allie légèreté et puissance. Avec son design aérodynamique et son moteur V8, elle offre des performances de classe mondiale." 13579
+
+
 ```
+## S'identifier sur l'onglet connexion :
 
 Identifiants de connexions pour l'administrateur (Si et seulement si il a été ajouté en amont dans la base de donnée) :
 
 Nom d'utilisateur : vparrot@gmail.com
 
 Mot de passe : admin
+
+Identifiants de connexions pour l'employé (Si et seulement si il a été ajouté en amont dans la base de donnée) :
+
+Nom d'utilisateur : arthur.garnier1090@gmail.com
+
+Mot de passe : employe1
+
+Identifiants de connexions pour l'employé (Si et seulement si il a été ajouté en amont dans la base de donnée) :
+
+Nom d'utilisateur : sachasimon92350@gmail.com
+
+Mot de passe : employe2
+
+Identifiants de connexions pour l'employé (Si et seulement si il a été ajouté en amont dans la base de donnée) :
+
+Nom d'utilisateur : sharkpi.zhou@gmail.com
+
+Mot de passe : employe3
+
+Identifiants de connexions pour l'employé (Si et seulement si il a été ajouté en amont dans la base de donnée) :
+
+Nom d'utilisateur : dorian93.roux@gmail.com
+
+Mot de passe : employe4
 
 
   
