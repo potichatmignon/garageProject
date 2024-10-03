@@ -70,7 +70,7 @@ class HomeController extends AbstractController
     {
         $session = $this->requestStack->getSession();
         $session->remove('user_role');
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_connexion');
     }
 
     #[Route('/info', name: 'app_info')]
@@ -106,7 +106,7 @@ class HomeController extends AbstractController
                 return $this->redirectToRoute('app_admin');
             } else {
                 $session->set('user_role', 'Employé');
-                return $this->redirectToRoute('app_home');
+                return $this->redirectToRoute('app_employe');
             }
         }
 
@@ -169,5 +169,17 @@ class HomeController extends AbstractController
         }
 
         return $this->redirectToRoute('app_admin');
+    }
+
+    #[Route('/employe', name: 'app_employe')]
+    public function employe(UserRepository $userRepository): Response
+    {
+        $session = $this->requestStack->getSession();
+        $userRole = $session->get('user_role', 'Connexion');
+        $users = $userRepository->findAll();
+        return $this->render('employe.html.twig', [
+            'user_role' => $userRole,
+            'users' => $users
+        ]);
     }
 }
