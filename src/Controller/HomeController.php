@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use App\Repository\UserRepository;
 use App\Repository\CarRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Avis;
+use App\Repository\AvisRepository;
 
 class HomeController extends AbstractController
 {
@@ -182,4 +184,39 @@ class HomeController extends AbstractController
             'users' => $users
         ]);
     }
+
+    #[Route('/avis', name: 'app_avis', methods: ['POST'])]
+    public function avis(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $name = $request->request->get('name');
+        $email = $request->request->get('email');
+        $message = $request->request->get('message');
+        $rating = $request->request->get('rating');
+
+        if (!$name || !$email || !$message || !$rating) {
+            return $this->redirectToRoute('app_home', [
+                'error' => 'Tous les champs sont obligatoires'
+            ]);
+        }
+
+        $avis = new Avis();
+        $avis->setName($name);
+        $avis->setEmail($email);
+        $avis->setMessage($message);
+        $avis->setRating((int)$rating); // Convertir la notation en entier
+        $avis->setValid(false); // Par défaut, vous pouvez ajuster cela selon vos besoins
+
+        $entityManager->persist($avis);
+        $entityManager->flush();
+
+        $session = $this->requestStack->getSession();
+        $userRole = $session->get('user_role', 'Connexion');
+
+        return $this->redirectToRoute('app_home', [
+            'success' => 'Votre avis a été soumis avec succès',
+            'user_role' => $userRole
+        ]);
+    }
+    
 }
+

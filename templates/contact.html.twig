@@ -6,7 +6,7 @@
             {% endblock %}
         </title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> {% block stylesheets %}{% endblock %}
-
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
         {% block javascripts %}
             {% block importmap %}
                 {{ importmap('app') }}
@@ -24,7 +24,7 @@
                     </div>
                     <div class="menu">
                         <ul>
-                            <li><a href="{{ path('app_about') }}">About</a></li>
+                            <li><a href="{{ path('app_about') }}">À Propos</a></li>
                             <li><a class="active" href="{{ path('app_contact') }}">Contact</a></li>
                             <li><a id="connexion" href="{{ path('app_connexion') }}">{{ user_role }}</a></li>
                         </ul>
