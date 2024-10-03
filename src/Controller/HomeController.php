@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Repository\UserRepository;
 use App\Repository\CarRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
 class HomeController extends AbstractController
 {
@@ -126,7 +128,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/add', name: 'app_addUsers', methods: ['GET'])]
-    public function addUsers(Request $request): Response
+    public function addUsers( UserRepository $userRepository, EntityManagerInterface $entityManager,Request $request): Response
     {
         $username = $request->query->get('email');
         $password = $request->query->get('password');
@@ -139,9 +141,33 @@ class HomeController extends AbstractController
         }   
 
         else{
+
+            if ($username && $password && $role) {
+                $user = new User();
+                $user->setEmail($username);
+                $user->setPassword(password_hash($password, PASSWORD_BCRYPT));
+                $user->setRole($role);
+    
+                $entityManager->persist($user);
+                $entityManager->flush();
+            }
+
             return $this->redirectToRoute('app_admin');
         }
 
         return $this->render('admin.html.twig');
+    }
+
+    #[Route('/delete_user/{id}', name: 'app_delete_user')]
+    public function deleteUser(int $id, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
+    {
+        $user = $userRepository->find($id);
+
+        if ($user) {
+            $entityManager->remove($user);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_admin');
     }
 }

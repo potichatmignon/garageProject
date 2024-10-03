@@ -40,9 +40,12 @@
                         <ul class="user-list" style="display:flex; align-items:flex-start; margin-bottom: 1.5em; margin-top: 1.5em; flex-direction:column; width: 90vw;">
                             {% for user in users %}
                                 {% if user.role == "employe" %}
-                                   <div style="display:flex; flex-direction:row; justify-content:center; gap:10px;"><li>{{ user.email }} - Employé </li><a href="" class="btn btn-danger logout-link">x</a></div>
+                                    <div style="display:flex; flex-direction:row; justify-content:center; gap:10px;">
+                                        <li>{{ user.email }} - Employé </li>
+                                        <a href="{{ path('app_delete_user', {'id': user.id}) }}" class="btn btn-danger logout-link">x</a>
+                                    </div>
                                 {% endif %}
- 							 {% endfor %}
+                            {% endfor %}
                         </ul>
                         <button class="btn btn-primary add-user-btn" @click="open = ! open">Add</button>
                         <form  action="{{ path('app_addUsers') }}" method="get" x-cloak x-show="open" class="add-user-form">
