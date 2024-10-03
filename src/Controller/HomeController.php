@@ -10,7 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Repository\UserRepository;
 use App\Repository\CarRepository;
+use App\Entity\Avis;
+use App\Form\AvisType;
 use Doctrine\ORM\EntityManagerInterface;
+
+
 
 class HomeController extends AbstractController
 {
@@ -182,4 +186,38 @@ class HomeController extends AbstractController
             'users' => $users
         ]);
     }
+
+   
+#[Route('/submit_comment', name: 'app_submit_comment', methods: ['POST'])]
+public function submitComment(Request $request, EntityManagerInterface $entityManager): Response
+{
+    $name = $request->request->get('name'); // Récupérez le nom
+    $email = $request->request->get('email'); // Récupérez l'email
+    $comment = $request->request->get('comment'); // Récupérez le commentaire
+    $rating = $request->request->get('rating'); // Récupérez la note
+
+    // Créez une nouvelle instance d'Avis
+    $avis = new Avis();
+    $avis->setName($name); // Assurez-vous que $name n'est pas null
+    $avis->setEmail($email); // Assurez-vous que $email n'est pas null
+    $avis->setMessage($comment); // Assurez-vous que $comment n'est pas null
+    $avis->setRating($rating); // Assurez-vous que $rating n'est pas null
+    $avis->setValid(false); // Ou true selon vos règles
+
+    // Enregistrez l'avis dans la base de données
+    $entityManager->persist($avis);
+    $entityManager->flush();
+
+    $session = $this->requestStack->getSession();
+    $userRole = $session->get('user_role', 'Connexion');
+    // Redirigez ou renvoyez une réponse appropriée
+    return $this->render('contact.html.twig', [
+        
+        'user_role' => $userRole
+    ]);
+}
+
+
+
+
 }

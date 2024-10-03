@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Soumettre un avis{% endblock %}
+
+{% block body %}
+    <h1>Soumettre un avis</h1>
+
+    {# Message flash pour succès ou erreur #}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+    {# Affichage du formulaire d'avis #}
+    {{ form_start(form) }}
+        {{ form_row(form.name, {'label': 'Nom'}) }}
+        {{ form_row(form.email, {'label': 'Email'}) }}
+        {{ form_row(form.message, {'label': 'Commentaire'}) }}
+        {{ form_row(form.rating, {'label': 'Note'}) }}
+
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    {{ form_end(form) }}
+{% endblock %}
