@@ -7,8 +7,10 @@
 - **PHP > 8.3.8**
 - **Un serveur Apache local**
   
-Si vous utilisez WAMPP et que votre serveur n'a que 2 services sur 3 alors rendez vous dans le Win+R. 
+Si vous utilisez WAMPP et que votre serveur n'a que 2 services sur 3 alors rendez vous dans le Win+R. *
+
 Tapez services.msc, recherchez MYSQL80, faites clique droit et cliquez sur arrêter.
+
 Relancez les services de WAMPP.
 
 - **Un éditeur de code**
@@ -24,21 +26,23 @@ scoop install symfony-cli
 
 ```
 
-Il faut télécharger lʼexécutable de Symfony CLI. Lʼexécutable est téléchargeable directement sur le
-site de Symfony
-Dans la section Binaries, cliquez sur la version correspondant à votre système : 386 pour les ordinateurs Intel
-32 bits et amd64 pour les ordinateurs avec un processeur AMD 64 bits.
+Il faut télécharger lʼexécutable de Symfony CLI. Lʼexécutable est téléchargeable directement sur le site de Symfony.
+
+Dans la section Binaries, cliquez sur la version correspondant à votre système : 386 pour les ordinateurs Intel 32 bits et amd64 pour les ordinateurs avec un processeur AMD 64 bits.
 
 Allez dans C:\Program Files et créez un dossier Symfony
 
 Déplacez l'archive téléchargée et décompréssée la.
 
 Dans la barre de recherche de Windows, tapez « env ». Le premier résultat devrait être « Modifier les variables dʼenvironnement système ». 
+
 Cliquez dessus, la fenêtre des Propriétés système va sʼafficher.
+
 Cliquez alors sur le bouton « Variables dʼenvironnement ». Cela ouvrira la fenêtre des variables dʼenvironnement.
+
 Dans la section « Variables système », choisissez « Path » et cliquez sur le bouton « Modifier ». Cela va ouvrir une troisième fenêtre pour modifier cette variable.
-Cliquez sur le bouton « Nouveau » et saisissez le chemin du dossier contenant lʼexécutable de Symfony CLI
-(symfony.exe) décompressé à lʼétape 4. Dans notre cas ce sera : « C:\Program Files\Symfony ».
+
+Cliquez sur le bouton « Nouveau » et saisissez le chemin du dossier contenant lʼexécutable de Symfony CLI (symfony.exe) décompressé à lʼétape 4. Dans notre cas ce sera : « C:\Program Files\Symfony ».
 
  Cliquez sur les boutons « OK » des trois fenêtres afin de toutes les fermer
 
