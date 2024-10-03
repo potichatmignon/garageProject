@@ -62,16 +62,25 @@ Visiter l'url donnée en sortie de console afin que le site web s'affiche correc
 
 ## Ajouter des éléments dans la base de donnée
 
+```bash
 php bin/console doctrine:database:create
+
 php bin/console make:migration
+
 php bin/console doctrine:migrations:migrate
+
 php bin/console app:create-user vparrot@gmail.com admin admin
+
 php bin/console app:create-user arthur.garnier1090@gmail.com employe1 employe
 
 php bin/console app:create-car 'Audi R8' 87000 "L'Audi R8 est une voiture de sport du constructeur automobile allemand Audi. C'est le premier coupé GT deux-places de la marque qui rivalise ainsi avec les marques historiques de ce segment : Porsche, Ferrari, Chevrolet ou Aston Martin." 15241
 
+```
+
 Identifiants de connexions pour l'administrateur (Si et seulement si il a été ajouté en amont dans la base de donnée) :
+
 Nom d'utilisateur : vparrot@gmail.com
+
 Mot de passe : admin
 
 
