@@ -39,13 +39,12 @@
                 </div>
             </div>
 
-            <div class="presentation">
-                <a href="{{ path('app_info') }}"><img src="{{ asset('img/Audi R8.png')}}" alt="car1"></a>
-               
+            <div class="presentation">               
                 {% for car in cars %}
-                        <img src="{{ asset('img/'~ car.name ~'.png') }}" alt="image voiture">
+                        <img src="{{ asset('img/'~ car.name ~'.png') }}" onclick="window.location.href='{{ path('app_info', { 'id': car.id }) }}'">
                 {% endfor %}
             </div>
+            <br>
             {% if avis is not empty %}
                 <section id='avis'>
                     <h2>Les avis :</h2>
@@ -59,6 +58,7 @@
                     </ul>
                 </section>
             {% endif %}
+             <br>
         </div>
 
         <div x-data="{ open: false }" class="popup" style="position: fixed; bottom: 50px; right: 20px;">
@@ -102,6 +102,8 @@
             this.submit(); 
             location.reload(); 
             });
+
+
 
 
             function afficherHoraires() {

@@ -31,17 +31,18 @@
 					</div>
 				</nav>
 				<main id="info">
-					<img src="{{ asset('img/Audi R8.png') }}" alt="">
-					<div>
-						<h2>Titre voiture</h2>
-						<p><b>Description :</b> voiture bla bla bla efazeferf</p>
-						<p><b>Kilometrage :</b> 200000 km</p>
-						<p><b>Prix :</b> 100000 €</p>
-						                {{ dump(cars) }}
-						{% for car in cars %}
-							{{ car.name }}
-						{% endfor %}
-					</div>
+					{% for car in cars %}
+                            {% if car.id == id %}
+                                <img src="{{ asset('img/'~ car.name ~'.png') }}">
+								<div>
+									<h2>{{ car.name }}</h2>
+									<p><b>Description :</b> {{ car.description }}</p>
+									<p><b>Kilometrage :</b> {{ car.kilometrage }}</p>
+									<p><b>Prix :</b> {{ car.price}}</p>
+								</div>
+                            {% endif %}
+                        {% endfor %}
+					
 				</main>
 			</div>
 		{% endblock %}

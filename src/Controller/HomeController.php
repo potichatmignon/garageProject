@@ -66,7 +66,9 @@ class HomeController extends AbstractController
         $userRole = $session->get('user_role', 'Connexion');
         if ($userRole === 'Admin') {
             return $this->redirectToRoute('app_admin');
-        } else {
+        } elseif ($userRole === 'Employé') {
+            return $this->redirectToRoute('app_employe');
+        }else {
             return $this->render('connexion.html.twig', [
                 'user_role' => $userRole
             ]);
@@ -79,19 +81,6 @@ class HomeController extends AbstractController
         $session = $this->requestStack->getSession();
         $session->remove('user_role');
         return $this->redirectToRoute('app_connexion');
-    }
-
-    #[Route('/info', name: 'app_info')]
-    public function car(CarRepository $carRepository): Response
-    {
-        $session = $this->requestStack->getSession();
-        $userRole = $session->get('user_role', 'Connexion');
-        $cars = $carRepository->findAll();
-        
-        return $this->render('info.html.twig', [
-            'cars' => $cars,
-            'user_role' => $userRole
-        ]);
     }
 
     #[Route('/login', name: 'app_login', methods: ['GET'])]
@@ -179,6 +168,20 @@ class HomeController extends AbstractController
 
         return $this->redirectToRoute('app_admin');
     }
+
+    #[Route('/info/{id}', name: 'app_info')]
+    public function car(int $id, CarRepository $carRepository): Response
+    {
+        $session = $this->requestStack->getSession();
+        $userRole = $session->get('user_role', 'Connexion');
+        $cars = $carRepository->findAll();
+
+        return $this->render('info.html.twig', [
+            'user_role' => $userRole,
+            'cars' => $cars,
+            'id' => $id
+        ]);
+        }
 
     #[Route('/employe', name: 'app_employe')]
     public function employe(AvisRepository $avisRepository, UserRepository $userRepository): Response
