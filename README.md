@@ -1,10 +1,5 @@
 # garageProject
 
-Identifiants de connexions pour l'administrateur (Si et seulement si il a été ajouté en amont dans la base de donnée) :
-Nom d'utilisateur : vparrot@gmail.com
-Mot de passe : admin
-
-
 # Projet Symfony - Instructions d'Installation et d'Exécution en Local
 
 ## Prérequis
@@ -71,7 +66,9 @@ php bin/console app:create-user arthur.garnier1090@gmail.com employe1 employe
 
 php bin/console app:create-car 'Audi R8' 87000 "L'Audi R8 est une voiture de sport du constructeur automobile allemand Audi. C'est le premier coupé GT deux-places de la marque qui rivalise ainsi avec les marques historiques de ce segment : Porsche, Ferrari, Chevrolet ou Aston Martin." 15241
 
-name price description km
-INSERT INTO car (description,kilometrage,name,price) VALUES ('L Audi R8 est une voiture de sport du constructeur automobile allemand Audi. C est le premier coupé GT deux-places de la marque qui rivalise ainsi avec les marques historiques de ce segment : Porsche, Ferrari, Chevrolet ou Aston Martin.',0,'Audi R8',200000);
+Identifiants de connexions pour l'administrateur (Si et seulement si il a été ajouté en amont dans la base de donnée) :
+Nom d'utilisateur : vparrot@gmail.com
+Mot de passe : admin
+
 
   
