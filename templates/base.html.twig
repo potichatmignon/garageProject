@@ -31,9 +31,9 @@
                     </ul>
                 </div>
             </nav>
-
-            <div id='garageHours' style="">
+            <div id='garageHours' style="position: fixed; display:flex; flex-direction: column; top:60px; left:0px; max-width:20vw; padding:40px;">
                 <h1>Horaires du garage :</h1>
+                <br>
                 <div class="panel">
                         <ul id="horairesList"></ul>
                 </div>
@@ -50,18 +50,28 @@
                 <a href="{{ path('app_info') }}"><img src="{{ asset('img/car8.png')}}" alt="car8"></a>
                 <a href="{{ path('app_info') }}"><img src="{{ asset('img/car9.png')}}" alt="car9"></a>
             </div>
-            <section id='avis'>
-                    bhjbj
-            </section>
+            {% if avis is not empty %}
+                <section id='avis'>
+                    <h2>Les avis :</h2>
+                    <ul>
+                        {% for avi in avis %}
+                            <li>
+                                <strong>{{ avi.name }}</strong> ({{ avi.rating }} étoiles) :<br>
+                                {{ avi.message }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            {% endif %}
         </div>
 
-        <div x-data="{ open: false }" class="popup" style="position: fixed; bottom: 20px; right: 20px;">
+        <div x-data="{ open: false }" class="popup" style="position: fixed; bottom: 50px; right: 20px;">
             <button @click="open = !open" id="popupButton" style="background-color: #3b82f6; color: #000; padding: 12px 20px; border: none; border-radius: 20%; cursor: pointer; transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;">
                 Avis
             </button>
             <div x-show="open" @click.away="open = false" style="background-color: #ffffff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); max-width: 400px; width: 100%; margin-top: 10px;">
                 <h2 style="color: #18181b; margin-bottom: 1.5rem;">Laissez votre avis</h2>
-                <form action="{{ path('app_avis') }}" method="post">
+                <form id="avisForm"  action="{{ path('app_avis') }}" method="post">
                     <div class="form-group">
                         <label for="name">Nom</label>
                         <input type="text" id="name" name="name" required>
@@ -92,6 +102,12 @@
         </div>
 
         <script>
+            document.getElementById('avisForm').addEventListener('submit', function(event) {
+            this.submit(); 
+            location.reload(); 
+            });
+
+
             function afficherHoraires() {
                 const horaires = JSON.parse(localStorage.getItem('dernierHoraire'));
                 const list = document.getElementById('horairesList');

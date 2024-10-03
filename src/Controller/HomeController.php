@@ -24,11 +24,14 @@ class HomeController extends AbstractController
     }
 
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(AvisRepository $avisRepository): Response
     {
+        $avis = $avisRepository->findBy(['valid' => true]);
+
         $session = $this->requestStack->getSession();
         $userRole = $session->get('user_role', 'Connexion');
         return $this->render('base.html.twig', [
+            'avis' => $avis,
             'user_role' => $userRole
         ]);
     }
@@ -174,15 +177,43 @@ class HomeController extends AbstractController
     }
 
     #[Route('/employe', name: 'app_employe')]
-    public function employe(UserRepository $userRepository): Response
+    public function employe(AvisRepository $avisRepository, UserRepository $userRepository): Response
     {
         $session = $this->requestStack->getSession();
         $userRole = $session->get('user_role', 'Connexion');
         $users = $userRepository->findAll();
+        $avisNonValides = $avisRepository->findBy(['valid' => false]);
         return $this->render('employe.html.twig', [
             'user_role' => $userRole,
-            'users' => $users
+            'users' => $users,
+            'avisNonValides' => $avisNonValides
         ]);
+    }
+
+    #[Route('/avis/valider/{id}', name: 'app_valider_avis')]
+    public function validerAvis(int $id, AvisRepository $avisRepository, EntityManagerInterface $entityManager): Response
+    {
+        $avis = $avisRepository->find($id);
+
+        if ($avis) {
+            $avis->setValid(true);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_employe');
+    }
+
+    #[Route('/avis/supprimer/{id}', name: 'app_supprimer_avis')]
+    public function supprimerAvis(int $id, AvisRepository $avisRepository, EntityManagerInterface $entityManager): Response
+    {
+        $avis = $avisRepository->find($id);
+
+        if ($avis) {
+            $entityManager->remove($avis);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_employe');
     }
 
     #[Route('/avis', name: 'app_avis', methods: ['POST'])]
@@ -203,8 +234,8 @@ class HomeController extends AbstractController
         $avis->setName($name);
         $avis->setEmail($email);
         $avis->setMessage($message);
-        $avis->setRating((int)$rating); // Convertir la notation en entier
-        $avis->setValid(false); // Par défaut, vous pouvez ajuster cela selon vos besoins
+        $avis->setRating((int)$rating);
+        $avis->setValid(false); 
 
         $entityManager->persist($avis);
         $entityManager->flush();
@@ -213,7 +244,6 @@ class HomeController extends AbstractController
         $userRole = $session->get('user_role', 'Connexion');
 
         return $this->redirectToRoute('app_home', [
-            'success' => 'Votre avis a été soumis avec succès',
             'user_role' => $userRole
         ]);
     }
