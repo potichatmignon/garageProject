@@ -1,80 +1,129 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>
-        {% block title %}Garage V. Parrot{% endblock %}
-    </title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-    {% block stylesheets %}{% endblock %}
-    {% block javascripts %}
-        {% block importmap %}
-            {{ importmap('app') }}
-        {% endblock %}
-    {% endblock %}
-</head>
-<body>
-    {% block body %}
-        <div class="app">
-            <nav class="container">
-                <div class="logo">
-                    <a style="display:flex; flex-direction:row; gap: 24px;" href="{{ path('app_home') }}">
-                        <h3>Garage V. Parrot</h3>
-                    </a>
-                </div>
-                <div class="menu">
-                    <ul>
-                        <li><a href="{{ path('app_about') }}">About</a></li>
-                        <li><a href="{{ path('app_contact') }}">Contact</a></li>
-                        <li><a id="connexion" href="{{ path('app_connexion') }}">{{ user_role }}</a></li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="presentation">
-                <a href="{{ path('app_info') }}"><img src="{{ asset('img/Audi R8.png')}}" alt="car1"></a>
-                <a href="{{ path('app_info') }}"><img src="{{ asset('img/Ferrari 488.png')}}" alt="car2"></a>
-                <a href="{{ path('app_info') }}"><img src="{{ asset('img/Porsche 911.png')}}" alt="car3"></a>
-                <a href="{{ path('app_info') }}"><img src="{{ asset('img/Chevrolet Corvette.png')}}" alt="car4"></a>
-                <a href="{{ path('app_info') }}"><img src="{{ asset('img/Aston Martin Vantage.png')}}" alt="car5"></a>
-                <a href="{{ path('app_info') }}"><img src="{{ asset('img/McLaren 720S.png')}}" alt="car6"></a>
-                <a href="{{ path('app_info') }}"><img src="{{ asset('img/car7.png')}}" alt="car7"></a>
-                <a href="{{ path('app_info') }}"><img src="{{ asset('img/car8.png')}}" alt="car8"></a>
-                <a href="{{ path('app_info') }}"><img src="{{ asset('img/car9.png')}}" alt="car9"></a>
-            </div>
-        </div>
-        
-        <h1>Horaires Ajoutés</h1>
-        <div class="panel">
-            <ul id="horairesList"></ul>
-        </div>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Garage V. Parrot
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> {% block stylesheets %}{% endblock %}
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}
+			<div class="app">
+				<nav class="container">
+					<div class="logo">
+						<a style="display:flex; flex-direction:row; gap: 24px;" href="{{ path('app_home') }}">
+							<h3>Garage V. Parrot</h3>
+						</a>
+					</div>
+					<div class="menu">
+						<ul>
+							<li><ahref="{{ path('app_about') }}">About</ahref=></li>
+							<li><ahref="{{ path('app_contact') }}">Contact</ahref=></li>
+							<li><a id="connexion"href="{{ path('app_connexion') }}">{{ user_role }}</a></li>
+						</ul>
+					</div>
+				</nav>
+				<div class="presentation">
+					<a href="{{ path('app_info') }}"><img src="{{ asset('img/Audi R8.png')}}" alt="car1"></a>
+					<a href="{{ path('app_info') }}"><img src="{{ asset('img/Ferrari 488.png')}}" alt="car2"></a>
+					<a href="{{ path('app_info') }}"><img src="{{ asset('img/Porsche 911.png')}}" alt="car3"></a>
+					<a href="{{ path('app_info') }}"><img src="{{ asset('img/Chevrolet Corvette.png')}}" alt="car4"></a>
+					<a href="{{ path('app_info') }}"><img src="{{ asset('img/Aston Martin Vantage.png')}}" alt="car5"></a>
+					<a href="{{ path('app_info') }}"><img src="{{ asset('img/McLaren 720S.png')}}" alt="car6"></a>
+					<a href="{{ path('app_info') }}"><img src="{{ asset('img/car7.png')}}" alt="car7"></a>
+					<a href="{{ path('app_info') }}"><img src="{{ asset('img/car8.png')}}" alt="car8"></a>
+					<a href="{{ path('app_info') }}"><img src="{{ asset('img/car9.png')}}" alt="car9"></a>
+				</div>
+			</div>
 
-        <script>
-            function afficherHoraires() {
-                const horaires = JSON.parse(localStorage.getItem('dernierHoraire'));
-                const list = document.getElementById('horairesList');
-                list.innerHTML = '';
+			<h1>Horaires Ajoutés</h1>
+			<div class="panel">
+				<ul id="horairesList"></ul>
+			</div>
 
-                if (horaires) {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `Ouverture à ${horaires.ouverture}, Fermeture à ${horaires.fermeture}`;
-                    list.appendChild(listItem);
-                } else {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = "Aucun horaire ajouté.";
-                    list.appendChild(listItem);
-                }
-            }
+			<button id="openPopupBtn">Ajouter un commentaire</button>
 
-            window.onload = afficherHoraires;
-        </script>
-    {% endblock %}
-</body>
-<script>
-    document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-            window.location.href = this.href;
-        });
-    });
+			<!-- Comment Popup Modal -->
+    <div id="commentPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+        <span id="closePopupBtn" class="close">&times;</span>
+        <h2>Laisser un commentaire</h2>
+        <form id="commentForm">
+            <label for="name">Votre nom :</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Votre email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="comment">Votre commentaire :</label>
+            <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
+
+            <label for="rating">Votre note (sur 5) :</label>
+            <input type="range" id="rating" name="rating" min="1" max="5" step="1" value="3" oninput="document.getElementById('ratingValue').innerText = this.value">
+            <span id="ratingValue">3</span>/5
+
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+</div>
+
+
+
+			 <script>
+    function afficherHoraires() {
+        const horaires = JSON.parse(localStorage.getItem('dernierHoraire'));
+        const list = document.getElementById('horairesList');
+        list.innerHTML = '';
+
+        if (horaires) {
+            const listItem = document.createElement('li');
+            listItem.textContent = `Ouverture à ${horaires.ouverture}, Fermeture à ${horaires.fermeture}`;
+            list.appendChild(listItem);
+        } else {
+            const listItem = document.createElement('li');
+            listItem.textContent = "Aucun horaire ajouté.";
+            list.appendChild(listItem);
+        }
+    }
+
+    window.onload = afficherHoraires;
+
+    const popup = document.getElementById('commentPopup');
+const openPopupBtn = document.getElementById('openPopupBtn');
+const closePopupBtn = document.getElementById('closePopupBtn');
+const commentForm = document.getElementById('commentForm');
+
+openPopupBtn.addEventListener('click', function () {
+    popup.style.display = 'block';
+});
+
+closePopupBtn.addEventListener('click', function () {
+    popup.style.display = 'none';
+});
+
+// Hide popup if user clicks outside of the popup content
+window.onclick = function(event) {
+    if (event.target === popup) {
+        popup.style.display = 'none';
+    }
+};
+
 </script>
+		{% endblock %}
+	</body>
+	 <script>
+	    document.querySelectorAll('nav a').forEach(link => {
+	        link.addEventListener('click', function (event) {
+	            event.preventDefault();
+	            window.location.href = this.href;
+	        });
+	    });
+	</script>
 </html>
