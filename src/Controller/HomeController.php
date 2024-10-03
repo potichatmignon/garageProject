@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Repository\UserRepository;
+use App\Entity\Car;
 use App\Repository\CarRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Avis;
@@ -24,15 +25,17 @@ class HomeController extends AbstractController
     }
 
     #[Route('/', name: 'app_home')]
-    public function index(AvisRepository $avisRepository): Response
+    public function index(AvisRepository $avisRepository, CarRepository $carRepository): Response
     {
         $avis = $avisRepository->findBy(['valid' => true]);
 
         $session = $this->requestStack->getSession();
+        $cars = $carRepository->findAll();
         $userRole = $session->get('user_role', 'Connexion');
         return $this->render('base.html.twig', [
             'avis' => $avis,
-            'user_role' => $userRole
+            'user_role' => $userRole,
+            'cars' => $cars
         ]);
     }
 
@@ -84,6 +87,7 @@ class HomeController extends AbstractController
         $session = $this->requestStack->getSession();
         $userRole = $session->get('user_role', 'Connexion');
         $cars = $carRepository->findAll();
+        
         return $this->render('info.html.twig', [
             'cars' => $cars,
             'user_role' => $userRole

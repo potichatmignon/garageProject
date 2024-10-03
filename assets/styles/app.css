@@ -355,6 +355,31 @@ input[type=submit] {
     max-width: 440px;
     margin:0 auto;
 }
+#info{
+    width: 65%;
+    display: flex;
+    margin-top: 5%;
+}
+#info img{
+    width: 50%;
+    border-radius: 0px;
+    border: solid 1px black;
+    margin-right: 10%;
+}
+#info img:hover{
+    transform: scale(1);
+    box-shadow: none;
+}
+#info h2{
+    font-size: 2em;
+    margin-bottom: 10%;
+}
+#info div{
+    line-height: 3em;
+}
+#info p b{
+    font-size: 1.1em;
+}
 
 @font-face {
     font-family: 'Montserrat';
