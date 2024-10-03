@@ -42,6 +42,31 @@
                 <a href="{{ path('app_info') }}"><img src="{{ asset('img/car9.png')}}" alt="car9"></a>
             </div>
         </div>
+        
+        <h1>Horaires Ajoutés</h1>
+        <div class="panel">
+            <ul id="horairesList"></ul>
+        </div>
+
+        <script>
+            function afficherHoraires() {
+                const horaires = JSON.parse(localStorage.getItem('dernierHoraire'));
+                const list = document.getElementById('horairesList');
+                list.innerHTML = '';
+
+                if (horaires) {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `Ouverture à ${horaires.ouverture}, Fermeture à ${horaires.fermeture}`;
+                    list.appendChild(listItem);
+                } else {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = "Aucun horaire ajouté.";
+                    list.appendChild(listItem);
+                }
+            }
+
+            window.onload = afficherHoraires;
+        </script>
     {% endblock %}
 </body>
 <script>

@@ -61,7 +61,84 @@
                         <a class="btn btn-danger logout-link" href="{{ path('app_deconnexion') }}">Déconnexion</a>
                     </div>
                 </div>
+                
+                
             </div>
+
+            <h1>Déclaration d'horaires</h1>
+    <div class="panel">
+        <form id="horairesForm">
+            <label for="horaireOuverture">Horaire d'ouverture :</label>
+            <select id="horaireOuverture" name="horaireOuverture" required>
+                <option value="">Sélectionner une heure</option>
+                <option value="7h">7h</option>
+                <option value="8h">8h</option>
+                <option value="9h">9h</option>
+                <option value="10h">10h</option>
+                <option value="11h">11h</option>
+                <option value="12h">12h</option>
+                <option value="13h">13h</option>
+                <option value="14h">14h</option>
+                <option value="15h">15h</option>
+                <option value="16h">16h</option>
+                <option value="17h">17h</option>
+                <option value="18h">18h</option>
+                <option value="19h">19h</option>
+                <option value="20h">20h</option>
+            </select>
+
+            <label for="horaireFermeture">Horaire de fermeture :</label>
+            <select id="horaireFermeture" name="horaireFermeture" required>
+                <option value="">Sélectionner une heure</option>
+                <option value="7h">7h</option>
+                <option value="8h">8h</option>
+                <option value="9h">9h</option>
+                <option value="10h">10h</option>
+                <option value="11h">11h</option>
+                <option value="12h">12h</option>
+                <option value="13h">13h</option>
+                <option value="14h">14h</option>
+                <option value="15h">15h</option>
+                <option value="16h">16h</option>
+                <option value="17h">17h</option>
+                <option value="18h">18h</option>
+                <option value="19h">19h</option>
+                <option value="20h">20h</option>
+            </select>
+
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('horairesForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const horaireOuverture = document.getElementById('horaireOuverture').value;
+            const horaireFermeture = document.getElementById('horaireFermeture').value;
+
+            const heuresOuverture = ['7h', '8h', '9h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h'];
+            const indexOuverture = heuresOuverture.indexOf(horaireOuverture);
+            const indexFermeture = heuresOuverture.indexOf(horaireFermeture);
+
+            if (indexFermeture <= indexOuverture) {
+                alert("L'horaire de fermeture doit être après l'horaire d'ouverture.");
+                return;
+            }
+
+            // Stocke uniquement le dernier horaire
+            const horaires = {
+                ouverture: horaireOuverture,
+                fermeture: horaireFermeture
+            };
+
+            localStorage.setItem('dernierHoraire', JSON.stringify(horaires));
+
+            alert('Horaire ajouté !');
+            this.reset();
+        });
+    </script>
+
         {% endblock %}
     </body>
     <script>
