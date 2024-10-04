@@ -376,8 +376,33 @@ input[type=submit] {
 #info div{
     line-height: 3em;
 }
+#info div p:first-of-type{
+    line-height: 1.6em;
+}
 #info p b{
     font-size: 1.1em;
+}
+#avis{
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(234, 234, 234);
+    border-radius: 3vh;
+    padding-bottom: 2%;
+}
+#avis h2{
+    width: 100%;
+    margin: 2em 0;
+}
+#avis ul{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#avis ul li{
+    width: 30%;
+    text-align: center;
 }
 
 @font-face {
