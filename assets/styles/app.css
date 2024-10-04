@@ -16,7 +16,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-top: 100px; /* Adjusted for fixed nav */
+    padding-top: 100px;
 }
 
 nav {
@@ -363,7 +363,6 @@ input[type=submit] {
 #info img{
     width: 50%;
     border-radius: 0px;
-    border: solid 1px black;
     margin-right: 10%;
 }
 #info img:hover{

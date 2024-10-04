@@ -44,7 +44,7 @@
                             {% for avi in avisNonValides %}
                                 <li style="margin:5px;">
                                     <strong>{{ avi.name }}</strong> ({{ avi.rating }} étoiles) :<br>
-                                    {{ avi.message }}
+                                    "{{ avi.message }}"
                                     <br>
                                     <br>
                                     <a href="{{ path('app_valider_avis', {'id': avi.id}) }}" class="btn btn-success">Valider</a>
